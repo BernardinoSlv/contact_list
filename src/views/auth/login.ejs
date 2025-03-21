@@ -1,0 +1,27 @@
+<%- include('../includes/head') %>
+
+<div class="container mt-3">
+    <div class="text-center">
+        <h1 class="mb-1">Agenda digital</h1>
+        <p class="text-muted">Anote todos os seus contatos importantes, como se não existesse um milhão de app iguais 🔥</p>
+    </div>
+
+    <form action="/auth" method="POST">
+        <div class="row row-cols-sm-2 g-3 mb-2">
+            <div class="col">
+                <div>
+                    <label for="username">Usuário</label>
+                    <input type="text" name="username" class="form-control" id="username" required />
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    <label for="password">Senha</label>
+                    <input type="password" name="password" class="form-control" required />
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+<%- include("../includes/footer") %>
