@@ -1,0 +1,25 @@
+<%- include('../includes/head') %>
+<div class="container-fluid">
+    <h1 class="my-4 text-center">Adicione um novo contato a sua lista</h1>
+
+    <form action="/contacts" method="POST">
+        <%- include('../components/flash-message') %>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="row">
+            <div class="col">
+                <label for="#i-name" class="form-label">Nome</label>
+                <input type="text" name="name" class="form-control" id="i-name" value="<%= old('name') %>" required>
+            </div>
+            <div class="col">
+                <label for="#i-content" class="form-label">Conteúdo</label>
+                <input type="text" name="content" class="form-control" id="i-content" value="<%= old('content') %>" required>
+            </div>
+        </div>
+        <div>
+            <label for="i-description" class="form-label">Descrição <small class="text-secondary">(opcional)</small></label>
+            <textarea name="description" class="form-control" id="i-description"><%= old('description') %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Enviar</button>
+    </form>
+</div>
+<%- include('../includes/footer') %>
