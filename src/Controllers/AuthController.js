@@ -18,7 +18,7 @@ module.exports = class {
       return res.redirect('/auth')
     }
     const passwordHash = crypto.createHash('md5').update(password).digest('hex')
-    const user = User.where('username').equals(username)
+    const user = await User.where('username').equals(username)
       .where("password").equals(passwordHash)
       .limit(1).findOne()
     if (!user) {
