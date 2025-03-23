@@ -5,7 +5,7 @@ module.exports = class {
   static async index(req, res) {
     res.locals.pageTitle = "Lista de contatos"
     const user = req.session.user
-    const contacts = await Contact.where("user_id").equals(user.id).exec()
+    const contacts = await Contact.where("user_id").equals(user.id).sort({created_at: -1}).exec()
     res.render('index', {contacts})
   }
 
