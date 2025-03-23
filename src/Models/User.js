@@ -5,6 +5,4 @@ const schema = new mongoose.Schema({
   password: {type: String, required: true}
 })
 
-const User = mongoose.model("users", schema)
-
-module.exports = User
+module.exports = mongoose.model("users", schema)
