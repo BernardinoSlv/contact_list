@@ -1,38 +1,48 @@
-<%- include('../includes/head') %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof pageTitle === 'undefined' ? '' : pageTitle %> - Agenda online</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
 
-<div class="container mt-3">
-    <div class="text-center">
-        <h1 class="mb-1">Agenda digital</h1>
-        <p class="text-muted">Preencha todos os dados para se cadastrar agora🔥</p>
-    </div>
-
-    <form action="/auth/register" method="POST">
-        <%- include('../components/flash-message') %>
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <div class="row row-cols-sm-3 g-3 mb-2">
-            <div class="col">
-                <div>
-                    <label for="username">Usuário</label>
-                    <input type="text" name="username" class="form-control" id="username" required value="<%= old('username') %>" />
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <label for="password">Senha</label>
-                    <input type="password" name="password" class="form-control" required />
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    <label for="password">Confirmar senha</label>
-                    <input type="password" name="password_confirm" class="form-control" required />
-                </div>
-            </div>
+    <div class="container mt-3">
+        <div class="text-center">
+            <h1 class="mb-1">Agenda digital</h1>
+            <p class="text-muted">Preencha todos os dados para se cadastrar agora🔥</p>
         </div>
-        <button class="btn btn-primary">Enviar</button>
-    </form>
-    <div class="text-center mt-3">
-        <a href="/auth">Já tenho conta</a>
+
+        <form action="/auth/register" method="POST">
+            <%- include('../components/flash-message') %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="row row-cols-sm-3 g-3 mb-2">
+                <div class="col">
+                    <div>
+                        <label for="username">Usuário</label>
+                        <input type="text" name="username" class="form-control" id="username" required value="<%= old('username') %>" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <label for="password">Senha</label>
+                        <input type="password" name="password" class="form-control" required />
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        <label for="password">Confirmar senha</label>
+                        <input type="password" name="password_confirm" class="form-control" required />
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary">Enviar</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/auth">Já tenho conta</a>
+        </div>
     </div>
-</div>
-<%- include("../includes/footer") %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
