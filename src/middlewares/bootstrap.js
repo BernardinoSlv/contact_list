@@ -1,6 +1,17 @@
 exports.implementReq = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken()
   res.locals.flashMessage = {}
+  const oldInputs = req.flash('_old')
+  res.locals.old = (key) => {
+    if (oldInputs.length) {
+      for (let item of oldInputs) {
+        if (item[key]) {
+          return item[key]
+        }
+      }
+    }
+    return undefined
+  }
 
   const messageType = req.flash('message_type').pop()
   if (messageType) {
