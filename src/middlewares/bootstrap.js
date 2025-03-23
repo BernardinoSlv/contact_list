@@ -1,6 +1,9 @@
 exports.implementReq = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken()
   res.locals.flashMessage = {}
+  if (req.session.user) {
+    res.locals.user = req.session.user
+  }
   const oldInputs = req.flash('_old')
   res.locals.old = (key) => {
     if (oldInputs.length) {
