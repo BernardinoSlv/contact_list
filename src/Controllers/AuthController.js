@@ -4,6 +4,8 @@ const fs = require("fs").promises
 
 module.exports = class {
   static index(req, res) {
+    res.locals.pageTitle = "Login"
+
     res.render('auth/login')
   }
 
@@ -15,15 +17,20 @@ module.exports = class {
       req.flash('message_text', 'Preencha todos os campos')
       return res.redirect('/auth')
     }
-    const user = await User.where('username').equals(username).limit(1).exec()
-    if (!user.length) {
+    const passwordHash = crypto.createHash('md5').update(password).digest('hex')
+    const user = (await User.where('username').equals(username)
+      .where("password").equals(passwordHash)
+      .limit(1).exec()).pop()
+    if (!user) {
       req.flash('message_type', 'danger')
       req.flash('message_text', 'Usuário ou senha incorretos')
-      req.session.name = "galada"
-      console.log(req.session)
-      res.writeHead(302, {Location: "/auth"})
+      res.writeHead(302, {Location: '/auth'})
+      req.flash('_old', {username: username})
+
       return res.end()
     }
-    const passwordHash = crypto.createHash('md5').update(password).digest('hex')
+    req.session.user = {id: user._id, username: user.username}
+    res.writeHead(302, {Location: "/"})
+    res.end()
   }
 }
