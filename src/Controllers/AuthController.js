@@ -34,6 +34,19 @@ module.exports = class {
     res.end()
   }
 
+  static register(req, res) {
+    res.locals.pageTitle = "Cadastre-se"
+
+    res.render('auth/register')
+  }
+
+  static store(req, res) {
+    const {username, password, password_confirm} = req.body
+
+    console.log(username, password, password_confirm)
+    res.send('muito bem')
+  }
+
   static logout(req, res) {
     if (req.session.user) {
       delete req.session.user

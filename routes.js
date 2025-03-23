@@ -6,6 +6,7 @@ const AuthController = require('./src/Controllers/AuthController')
 const routes = express.Router()
 
 // rotas auth
+routes.get('/auth/register', AuthController.register)
 routes.get('/auth', AuthController.index)
 routes.post('/auth', AuthController.attempt)
 routes.get('/logout', AuthController.logout)
