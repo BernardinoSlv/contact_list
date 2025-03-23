@@ -8,6 +8,7 @@ const routes = express.Router()
 // rotas auth
 routes.get('/auth', AuthController.index)
 routes.post('/auth', AuthController.attempt)
+routes.get('/logout', AuthController.logout)
 
 // rotas index
 routes.get('/', checkLogin, IndexController.index)

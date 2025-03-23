@@ -33,4 +33,14 @@ module.exports = class {
     res.writeHead(302, {Location: "/"})
     res.end()
   }
+
+  static logout(req, res) {
+    if (req.session.user) {
+      delete req.session.user
+    }
+    req.flash('message_type', 'primary')
+    req.flash('message_text', 'Logout realizado com sucesso')
+    res.writeHead(302, {Location: '/auth'})
+    res.end()
+  }
 }
