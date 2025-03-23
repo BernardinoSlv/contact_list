@@ -1,3 +1,5 @@
+const timeFormatted = require('../Support/timeFormatted')
+
 exports.implementReq = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken()
   res.locals.flashMessage = {}
@@ -15,13 +17,16 @@ exports.implementReq = (req, res, next) => {
     }
     return undefined
   }
-
   const messageType = req.flash('message_type').pop()
   if (messageType) {
     res.locals.flashMessage = {
       type: messageType,
       text: req.flash('message_text')
     }
+  }
+
+  res.locals.helpers = {
+    formatDatetimeBr: timeFormatted.formatDatetimeBr
   }
   next()
 }
