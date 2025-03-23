@@ -4,8 +4,6 @@ const fs = require("fs").promises
 
 module.exports = class {
   static index(req, res) {
-    res.locals.pageTitle = "Login"
-
     res.render('auth/login')
   }
 
@@ -35,8 +33,6 @@ module.exports = class {
   }
 
   static register(req, res) {
-    res.locals.pageTitle = "Cadastre-se"
-
     res.render('auth/register')
   }
 
