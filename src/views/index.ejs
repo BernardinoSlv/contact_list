@@ -1,5 +1,6 @@
 <%- include('./includes/head') %>
-<div class="container-fluid">
+<div class="container-fluid mt-3">
+    <%- include('./components/flash-message') %>
     <div class="my-3">
         <a href="/contacts/create" class="btn btn-primary shadow">
             <i class="bi bi-plus-circle"></i>
@@ -12,6 +13,7 @@
                 <th>#</th>
                 <th>Nome</th>
                 <th>Conteúdo</th>
+                <th>Criado</th>
                 <th><i class="bi bi-gear-fill"></i></th>
             </tr>
         </thead>
@@ -21,6 +23,7 @@
                     <td><%= contact._id %></td>
                     <td><%= contact.name %></td>
                     <td><%= contact.content %></td>
+                    <td><%= helpers.formatDatetimeBr(contact.created_at) %></td>
                     <td>
                         <a class="btn btn-sm btn-danger">
                             <i class="bi bi-trash"></i>

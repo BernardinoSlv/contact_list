@@ -15,5 +15,6 @@ routes.get('/logout', AuthController.logout)
 // rotas index
 routes.get('/', checkLogin, IndexController.index)
 routes.get('/contacts/create', IndexController.create)
+routes.post('/contacts', IndexController.store)
 
 module.exports = routes
