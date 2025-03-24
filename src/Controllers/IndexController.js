@@ -43,4 +43,20 @@ module.exports = class {
     res.writeHead(302, {Location: '/'})
     res.end()
   }
+
+  static async edit(req, res) {
+    res.locals.pageTitle = "Editar contato"
+    
+    const id = req.params.id 
+    const contact = await Contact.findOne({
+      _id: id,
+      user_id: req.session.user.id
+    })
+
+    if (!contact) {
+      res.status(404)
+      return res.end()
+    }
+    res.render('contacts/edit', {contact})
+  }
 }
