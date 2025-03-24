@@ -29,10 +29,13 @@
                             <i class="bi bi-pen"></i>
                             Editar
                         </a>
-                        <a href="#delete" class="btn btn-sm btn-danger">
-                            <i class="bi bi-trash"></i>
-                            Remover
-                        </a>
+                        <form action="/contacts/<%= contact.id %>?_method=DELETE" method="POST" class="d-inline-block" onsubmit="return confirm('O contato <%= contact.name %> será deletado permanentemente')">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <button class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i>
+                                Remover
+                            </button>
+                        </form>
                     </td>
                 </tr>
             <% } %>

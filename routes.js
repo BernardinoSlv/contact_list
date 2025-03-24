@@ -18,5 +18,6 @@ routes.get('/contacts/create', IndexController.create)
 routes.post('/contacts', IndexController.store)
 routes.get('/contacts/:id', IndexController.edit)
 routes.put('/contacts/:id', IndexController.update)
+routes.delete('/contacts/:id', IndexController.destroy)
 
 module.exports = routes

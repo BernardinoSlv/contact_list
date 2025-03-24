@@ -97,4 +97,26 @@ module.exports = class {
     res.writeHead(302, {Location: '/'})
     res.end()
   }
+
+  static async destroy(req, res) {
+    const id = req.params.id
+    const contact = await Contact.findOne({
+      _id: id,
+      user_id: req.session.user.id
+    })
+
+    if (!contact) {
+      res.status(404)
+      return res.end()
+    }
+
+    await Contact.deleteOne({
+      _id: id
+    })
+
+    req.flash('message_type', 'success')
+    req.flash('message_text', 'Contato removido com sucesso')
+    res.writeHead(302, {Location: '/'})
+    res.end()
+  }
 }
