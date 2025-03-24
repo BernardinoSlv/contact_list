@@ -16,7 +16,7 @@ Nesse projeto está sendo utilizado:
 
 ### Uso
 ```bash
-npm install // instalar todas as dependências do projeto
+npm install # instalar todas as dependências do projeto
 
-npm start // para iniciar o servidor
+npm start # para iniciar o servidor
 ```
