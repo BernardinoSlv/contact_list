@@ -7,7 +7,7 @@ exports.implementReq = (req, res, next) => {
     res.locals.user = req.session.user
   }
   const oldInputs = req.flash('_old')
-  res.locals.old = (key) => {
+  res.locals.old = (key, value = undefined) => {
     if (oldInputs.length) {
       for (let item of oldInputs) {
         if (item[key]) {
@@ -15,7 +15,7 @@ exports.implementReq = (req, res, next) => {
         }
       }
     }
-    return undefined
+    return value
   }
   const messageType = req.flash('message_type').pop()
   if (messageType) {
