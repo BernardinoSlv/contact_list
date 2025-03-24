@@ -8,7 +8,11 @@
 - CRUD de contatos
 
 ### Detalhes técnicos 
-Nesse projeto está sendo utilizado a estrutura MVC para separação de responsabilidade.
+Nesse projeto está sendo utilizado:
+- Padrão MVC para separação de resposabilidades
+- Banco de dados Nosql mongoDB
+- Para a ui do projeto está sendo utilizado bootstrap (v5.3)
+- Estou fazendo a inserção de helpers para a view no /src/bootstrap.js, alguns helpers como old (pega os dados enviados e persiste no formulário), e também o 
 
 ### Uso
 ```bash
