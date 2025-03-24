@@ -33,7 +33,7 @@ module.exports = class {
 
     await Contact.create({
       user_id: req.session.user.id,
-      name,
+      name: name.toLowerCase(),
       content,
       description,
       created_at: timeFormatted.datetime()
@@ -46,7 +46,7 @@ module.exports = class {
 
   static async edit(req, res) {
     res.locals.pageTitle = "Editar contato"
-    
+
     const id = req.params.id 
     const contact = await Contact.findOne({
       _id: id,
@@ -58,5 +58,43 @@ module.exports = class {
       return res.end()
     }
     res.render('contacts/edit', {contact})
+  }
+
+  static async update(req, res) {
+    const id = req.params.id
+    const contact = await Contact.findOne({
+      _id: id,
+      user_id: req.session.user.id
+    })
+    const {name, content, description} = req.body
+
+    if (!contact) {
+      res.status(404)
+      return res.end()
+    } else if (!name || !content) {
+      req.flash('message_type', 'danger')
+      req.flash('message_text', 'O campo nome e conteúdo são obrigatórios')
+      res.writeHead(302, {Location: '/contacts/create'})
+      return res.end()
+    } else if (await Contact.findOne({
+      _id: {$ne: id},
+      user_id: req.session.user.id,
+      name: name.toLowerCase()
+    })) {
+      req.flash('message_type', 'danger')
+      req.flash('message_text', 'Contato com esse nome já existe')
+      res.writeHead(302, {Location: '/contacts/' + id})
+      return res.end()
+    }
+
+    await Contact.where("_id").equals(id).updateOne({
+      name: name.toLowerCase(),
+      content,
+      description
+    })
+    req.flash('message_type', 'success')
+    req.flash('message_text', "Contato atualizado com sucesso")
+    res.writeHead(302, {Location: '/'})
+    res.end()
   }
 }
