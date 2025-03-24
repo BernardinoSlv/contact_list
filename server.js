@@ -8,6 +8,7 @@ const flash = require("express-flash")
 const bootstrapMiddlewares = require('./src/middlewares/bootstrap')
 const mongoose = require('mongoose')
 const csrf = require('csurf')
+const methodOverride = require('method-override')
 
 const app = express()
 
@@ -35,6 +36,7 @@ app.use(session({
 }))
 app.use(flash())
 app.use(csrf())
+app.use(methodOverride('_method'))
 app.use(bootstrapMiddlewares.checkCsrf)
 app.use(bootstrapMiddlewares.implementReq)
 
